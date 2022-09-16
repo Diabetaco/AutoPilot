@@ -1,0 +1,13 @@
+{
+    "name": "Auto-Pilot",
+    "description": "Built by Logan Back",
+    "version": "1.0",
+    "manifest_version": 3,
+
+    "content_scripts": [
+        {
+            "matches": ["https://pilot.wright.edu/d2l/home"],
+            "js": ["/content_script.js"]
+        }
+    ]
+  }
