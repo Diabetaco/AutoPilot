@@ -1,11 +1,24 @@
-var course_eval = document.querySelector('[aria-labelledby*="d2l_1_0"]');
-course_eval.parentElement.removeChild(course_eval);
+//removes unwanted Pilot tabs
+remove_course_evaluation();
 
+//poll remove weekly digest while page loads
+//interval stops running when the element to be removed is found
 var intervalID = setInterval(remove_weekly_digest, 1);
+
+function remove_course_evaluation()
+{
+    var course_eval = document.querySelector('[aria-labelledby*="d2l_1_0"]');
+    course_eval.parentElement.removeChild(course_eval);
+}
 
 function remove_weekly_digest()
 {
-   var weekly_digest = $$$('[href="https://b893732b-5aab-4130-b167-8e7cf9976e8c.enrollments.api.brightspace.com/enrolled-user/OM4aoQsbO1_7dBs2ld7u_ssfyXg5xzHA0sZW6Wtovnc/enrollment"]');
+    var weekly_digest = $$$('[text*="CECS Internship and Job Opportunity: Weekly Digest"]');
+    if (weekly_digest.length > 0)
+    {
+        var wd_node = weekly_digest[0].getRootNode().host;
+        wd_node.parentElement.removeChild(wd_node);
+    }
 }
 
 function $$$(selector, rootNode=document.body) {
@@ -19,9 +32,8 @@ function $$$(selector, rootNode=document.body) {
         
         // 2. add the node to the array, if it matches the selector
         if(node.matches(selector)) {
-            node.parentElement.removeChild(node)
             clearInterval(intervalID)
-            //arr.push(node)
+            arr.push(node)
         }
         
         // 3. loop through the children
