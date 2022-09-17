@@ -18,6 +18,7 @@ function remove_weekly_digest()
     {
         var wd_node = weekly_digest[0].getRootNode().host;
         wd_node.parentElement.removeChild(wd_node);
+        clearInterval(intervalID);
     }
 }
 
@@ -32,7 +33,6 @@ function $$$(selector, rootNode=document.body) {
         
         // 2. add the node to the array, if it matches the selector
         if(node.matches(selector)) {
-            clearInterval(intervalID)
             arr.push(node)
         }
         
